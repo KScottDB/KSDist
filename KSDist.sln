@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSDist", "KSDist.csproj", "{65B761A5-FFCD-41DB-B4DB-552B2AD20F6B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65B761A5-FFCD-41DB-B4DB-552B2AD20F6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65B761A5-FFCD-41DB-B4DB-552B2AD20F6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65B761A5-FFCD-41DB-B4DB-552B2AD20F6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65B761A5-FFCD-41DB-B4DB-552B2AD20F6B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {441A0162-8325-407E-9590-3B535509AA93}
+	EndGlobalSection
+EndGlobal
