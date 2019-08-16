@@ -40,6 +40,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -99,6 +100,28 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ksdist.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="send.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="recv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="error32.png" />
+    <EmbeddedResource Include="error64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unkpkg32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unkpkg64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\helpfile.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
