@@ -16,48 +16,78 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KSDist
-{
-    public class _Icon
-    {
-        public Bitmap NormalIcon { get; set; }
-        public Bitmap BigIcon { get; set; }
-        
-        public _Icon()
-        {
-            // unset
-            NormalIcon = KSDist.Properties.Resources.error32;
-            BigIcon = KSDist.Properties.Resources.error64;
-        }
+namespace KSDist {
+    public partial class MainWindow : Window {
 
-        public Stream BigIconPNG()
-        {
-            MemoryStream mem = new MemoryStream();
-            BigIcon.Save(mem, ImageFormat.Png);
-            return mem;
-        }
-        public Stream NormalIconPNG()
-        {
-            MemoryStream mem = new MemoryStream();
-            NormalIcon.Save(mem, ImageFormat.Png);
-            return mem;
-        }
-    }
-
-    public class GrigmaBalls 
-    {
-
-    }
-    public partial class MainWindow : Window
-    {
-        public List<string> sigma = new List<string>();
-        public MainWindow()
-        {
+        public MainWindow() {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        private void Window_Loaded(object sender, RoutedEventArgs e) {
+
+            if (!File.Exists("pkg.ndx")) {
+                window.Hide();
+
+                MessageBoxResult a = MessageBox.Show("Is this the first time you've opened KSDist?", "KSDist", MessageBoxButton.YesNo);
+                if (a==MessageBoxResult.Yes) {
+                    // Yes
+                    File.WriteAllText("pkg.ndx", "");
+                    a = MessageBox.Show(
+                        "Welcome to KSDist!\n" +
+                        "You do not have any packages.\n" +
+                        "Someone else will have to send some to you,\n" +
+                        "or, if you're the computer savvy type, you can try to make some!\n" +
+                        "Do you want to view the help file before continuing?",
+                        "KSDist", MessageBoxButton.YesNo);
+                    if (a==MessageBoxResult.Yes) {
+                        // View the help file
+                        System.Windows.Forms.Help.ShowHelp()
+                    } else {
+                        // Do not
+                        MessageBox.Show(
+                        "Okay! It's always accessible if you need it!",
+                        "KSDist", MessageBoxButton.OK);
+                    }
+                } else {
+                    // No
+                    a = MessageBox.Show(
+                        "Oh no...!\n" +
+                        "Your Package Index file (pkg.ndx) seems to have been deleted!\n" +
+                        "Do you want me to try to regenerate it?",
+                        "KSDist", MessageBoxButton.YesNo);
+
+                }
+
+                window.Show();
+            }
+
+            lstvwIcons.Items.Add(new KSPkg() {
+                Name = "Hello World",
+                Icon = new Icon() {
+                    NormalIcon = KSDist.Properties.Resources.unkpkg32,
+                    BigIcon = KSDist.Properties.Resources.unkpkg64
+                }
+            });
+
+            lstvwIcons.Items.Add(new KSPkg() {
+                Name = "Dummy",
+                Icon = new Icon()
+            });
+
+        }
+
+        private void LstvwIcons_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+
+        }
+
+        private void BtnSend_Click(object sender, RoutedEventArgs e) {
+            if (lstvwIcons.SelectedIndex == -1) {
+                MessageBox.Show("Select a package to send first.", "KSDist");
+                return;
+            }
+        }
+
+        private void BtnRecieve_Click(object sender, RoutedEventArgs e) {
 
         }
     }
