@@ -21,17 +21,22 @@ namespace KSDist {
 
         public MainWindow() {
             InitializeComponent();
+            window.Hide();
+        }
+
+        private void OpenHelpfile(string topic) {
+            System.Windows.Forms.Help.ShowHelp(null, "ksdist.chm", System.Windows.Forms.HelpNavigator.Topic, topic);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
 
-            if (!File.Exists("pkg.ndx")) {
-                window.Hide();
+            if (!File.Exists("ks.dat")) {
+
 
                 MessageBoxResult a = MessageBox.Show("Is this the first time you've opened KSDist?", "KSDist", MessageBoxButton.YesNo);
                 if (a==MessageBoxResult.Yes) {
-                    // Yes
-                    File.WriteAllText("pkg.ndx", "");
+                    // This is the first time the user has opened KSDist
+                    File.WriteAllText("ks.dat", "");
                     a = MessageBox.Show(
                         "Welcome to KSDist!\n" +
                         "You do not have any packages.\n" +
@@ -41,7 +46,7 @@ namespace KSDist {
                         "KSDist", MessageBoxButton.YesNo);
                     if (a==MessageBoxResult.Yes) {
                         // View the help file
-                        System.Windows.Forms.Help.ShowHelp()
+                        OpenHelpfile(@"welcome.htm");
                     } else {
                         // Do not
                         MessageBox.Show(
@@ -49,17 +54,21 @@ namespace KSDist {
                         "KSDist", MessageBoxButton.OK);
                     }
                 } else {
-                    // No
+                    // The user isn't new, their data file is missing
                     a = MessageBox.Show(
                         "Oh no...!\n" +
-                        "Your Package Index file (pkg.ndx) seems to have been deleted!\n" +
-                        "Do you want me to try to regenerate it?",
+                        "Your KSD Data file (ks.dat) seems to have been deleted!\n" +
+                        "Do you want me to scan for KSPkgs and add them?",
                         "KSDist", MessageBoxButton.YesNo);
-
+                    if (a==MessageBoxResult.Yes) {
+                        // Regenerate ks.dat
+                    } else {
+                        // ...don't
+                    }
                 }
-
-                window.Show();
             }
+
+            window.Show();
 
             lstvwIcons.Items.Add(new KSPkg() {
                 Name = "Hello World",
@@ -90,5 +99,7 @@ namespace KSDist {
         private void BtnRecieve_Click(object sender, RoutedEventArgs e) {
 
         }
+
+        private void BtnHelp_Click(object sender, RoutedEventArgs e) => OpenHelpfile(@"welcome.htm"); // the help button opens the help file, surprisingly!
     }
 }

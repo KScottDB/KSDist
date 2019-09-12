@@ -43,7 +43,7 @@
                     <TextBlock VerticalAlignment="Center">Recieve</TextBlock>
                 </StackPanel>
             </Button>
-            <Button x:Name="btnHelp" Height="38" Margin="0,20"> <!-- help button -->
+            <Button x:Name="btnHelp" Height="38" Margin="0,20" Click="BtnHelp_Click"> <!-- help button -->
                 <StackPanel Orientation="Horizontal">
                     <Image Source="help.png" Width="24" Margin="-5,4,4,4"
                            SnapsToDevicePixels="True"/>
