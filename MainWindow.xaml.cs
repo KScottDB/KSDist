@@ -21,7 +21,7 @@ namespace KSDist {
 
         public MainWindow() {
             InitializeComponent();
-            window.Hide();
+            //window.Hide();
         }
 
         private void OpenHelpfile(string topic) {
@@ -31,8 +31,7 @@ namespace KSDist {
         private void Window_Loaded(object sender, RoutedEventArgs e) {
 
             if (!File.Exists("ks.dat")) {
-
-
+                 
                 MessageBoxResult a = MessageBox.Show("Is this the first time you've opened KSDist?", "KSDist", MessageBoxButton.YesNo);
                 if (a==MessageBoxResult.Yes) {
                     // This is the first time the user has opened KSDist
